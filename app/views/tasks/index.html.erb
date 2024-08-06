@@ -1,0 +1,24 @@
+<h1>My Tasks</h1>
+
+<div class="container border-bottom p-3">
+  <% @tasks.each do |task| %>
+    <div class="task">
+      <% if task.completed %>
+      <i class="fa-regular fa-square-check"></i>
+      <% else %>
+      <i class="fa-regular fa-square"></i>
+      <% end %>
+      <%= link_to task.title, task_path(task) %>
+      <%# how to use fontawsome with link_to %>
+      <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+      <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="container p-3">
+<%= link_to new_task_path do %>
+  <i class="fa-solid fa-plus"></i> Add a new task
+<% end %>
+</div>
